@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+int main(){
+    const int row = 10;
+    const int col = 10;
+    int arr[col][row];
+    for(int i = 0;i < col; i++){
+        for(int j = 0;j < row; j++){
+            arr[i][j] = 0;
+        }
+    } //먼저 0으로 이니셜라이징(initializing)
+    // 반복문 시발 어케함 
+    
+    int a = 0;
+    int x = 0;
+    while(x < col * row){
+        // ->
+        for(int j = 0 + a; j < row - a; j++){
+            x += 1;
+            arr[a][j] = x;
+        }
+        
+        // down
+        for(int i = 1 + a; i < col - a; i++){
+            x += 1;
+            arr[i][row - 1 - a] = x;
+        }
+        
+        // <-
+        for(int j = row - 2 - a; j >= 0 + a; j--){
+            x += 1;
+            arr[col - 1 - a][j] = x;
+        }
+        
+        // up
+        for(int i = col - 2 - a; i >= 1 + a; i--){
+            x += 1;
+            arr[i][a] = x;
+        }
+        a += 1;
+    }
+    for(int i = 0;i < col; i++){
+        for(int j = 0;j < row; j++){
+            printf("%d\t", arr[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
